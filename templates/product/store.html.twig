@@ -1,0 +1,94 @@
+{# giao diện dạng thẻ cho khách hàng xem #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container text-center mt-4">
+		<h1 class="alert alert-danger">Store</h1>
+		<div class="row">
+			<div class="col">
+				<div class="row">
+					<div class="col-5">
+						<h6 class="text text-success">Sort product</h6>
+					</div>
+					{# <div class="col-7">
+						<select class="form-control" onchange="window.location.href=this.value">
+							<option>Select one</option>
+							<option value="{{ path('sort_product_price_ascending')}}">Price Ascending</option>
+							<option value="{{ path('sort_product_price_descending')}}">Price Descending</option>
+						</select>
+					</div> #}
+				</div>
+			</div>
+			{# <div class="col">
+            <div class="row">
+               <div class="col-5">
+               	<h6 class="text text-success">Search product</h6>
+               </div>
+               <div class="col-7">
+                  <div class="form-group">
+                     <form action="{{ path('search_product_title')}}" method="post">
+                        <input class="form-control" type="search" name="keyword" placeholder="Enter product title">
+                     </form>
+                  </div>
+               </div>
+            </div> #}
+         
+         </div>
+		</div>
+		{% if products == null %}
+			<h1 class="text text-danger">No product found</h1>
+		{% else %}
+		<div class="card-group mt-3">
+			<div class="row">
+				{% for product in products %}
+					{# {% if products | length >=4 %}
+						<div class="col-md-3 mt-3">
+					{% else %} #}
+						<div class="col mt-3">
+					{# {% endif %} #}
+						<div class="card p-3">
+							<div class="card-img-top">
+								<a href="{{ path('product_detail', {'id': product.id })}}">
+									<img src="{{ asset('images/products/'~product.image) }}" width="120" height="120">
+								</a>
+							</div>
+							<div class="card-title">
+								<h5 class="alert alert-heading">{{ product.title }}
+								</h5>
+							</div>
+							<div class="card-subtitle">
+								<h4 class="text text-primary">{{ product.price }}
+									$</h4>
+							</div>
+							{% if product.quantity >= 1 %}
+								<div class="card-body">
+									<h3 class="text text-success">
+										In-stock:
+										{{ product.quantity }}
+									</h3>
+								</div>
+								<div class="card-footer">
+									<form action="{{ path('add_to_cart') }}" method="post">
+										<div class="form-group mb-3">
+											<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
+										</div>
+										<input type="hidden" name="id" value="{{ product.id }}">
+										<input class="btn btn-success" type="submit" value="Add to cart"/>
+									</form>
+								</div>
+							{% else %}
+								<div class="card-body">
+									<h3 class="text text-danger">
+										Out of stock
+									</h3>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+		
+	</div>
+{% endblock %}

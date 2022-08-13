@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 mt-3">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card">
+            <img src="{{ product.image }}" width="200" height="250">
+         </div>
+      </div>
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header">
+               <h1 class="text text-primary text-center">{{ product.name }} </h1>
+            </div>
+            {% if product.quantity >= 1 %}
+               <div class="card-body">
+                  <h3 class="text text-danger">Price: {{ product.price }} $ </h3>
+                  <h3 class="text text-info">Description: {{ product.description }} </h3>
+                  <h3 class="text text-success">In-stock: {{ product.quantity }} </h3>
+                  <h3 class="text text-warning">Category : 
+                     {% if product.category != null %}
+                        <a href="{{ path('category_detail', {'id': product.category.id })}}">
+                           {{ product.category.name }} 
+                        </a>
+                     {% else %}
+                        N/A
+                     {% endif %}
+                  </h3>
+               </div>
+            {% else %}
+               <div class="card-body">
+                  <h3 class="text text-danger">Price: {{ product.price }} $ </h3>
+                  <h3 class="text text-info">Description: {{ product.description }} </h3>
+                  <h3 class="text text-warning">Category: 
+                     {% if product.category != null %}
+                        <a href="{{ path('category_detail', {'id': product.category.id })}}">
+                           {{ product.category.name }} 
+                        </a>
+                     {% else %}
+                        N/A
+                     {% endif %}
+                  </h3>
+               </div>
+            {% endif %}       
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
