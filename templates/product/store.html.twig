@@ -19,8 +19,8 @@
 					</div> #}
 				</div>
 			</div>
-			{# <div class="col">
-            <div class="row">
+			<div class="col">
+            {# <div class="row">
                <div class="col-5">
                	<h6 class="text text-success">Search product</h6>
                </div>
@@ -41,11 +41,11 @@
 		<div class="card-group mt-3">
 			<div class="row">
 				{% for product in products %}
-					{# {% if products | length >=4 %}
+					{% if products | length >=4 %}
 						<div class="col-md-3 mt-3">
-					{% else %} #}
+					{% else %}
 						<div class="col mt-3">
-					{# {% endif %} #}
+					{% endif %}
 						<div class="card p-3">
 							<div class="card-img-top">
 								<a href="{{ path('product_detail', {'id': product.id })}}">
@@ -53,7 +53,7 @@
 								</a>
 							</div>
 							<div class="card-title">
-								<h5 class="alert alert-heading">{{ product.title }}
+								<h5 class="alert alert-heading">{{ product.name }}
 								</h5>
 							</div>
 							<div class="card-subtitle">
