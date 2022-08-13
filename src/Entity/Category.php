@@ -16,12 +16,9 @@ class Category
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $catid;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'catid', targetEntity: product::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: product::class)]
     private $product;
 
     public function __construct()
@@ -34,17 +31,6 @@ class Category
         return $this->id;
     }
 
-    public function getCatid(): ?string
-    {
-        return $this->catid;
-    }
-
-    public function setCatid(string $catid): self
-    {
-        $this->catid = $catid;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
@@ -70,7 +56,7 @@ class Category
     {
         if (!$this->product->contains($product)) {
             $this->product[] = $product;
-            $product->setCatid($this);
+            $product->setCategory($this);
         }
 
         return $this;
@@ -80,8 +66,8 @@ class Category
     {
         if ($this->product->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($product->getCatid() === $this) {
-                $product->setCatid(null);
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
             }
         }
 

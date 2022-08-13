@@ -29,8 +29,8 @@ class Product
     private $image;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'product')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $catid;
+    #[ORM\JoinColumn(nullable: true)]
+    private $category;
 
     public function getId(): ?int
     {
@@ -97,14 +97,14 @@ class Product
         return $this;
     }
 
-    public function getCatid(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->catid;
+        return $this->category;
     }
 
-    public function setCatid(?Category $catid): self
+    public function setCategory(?Category $category): self
     {
-        $this->catid = $catid;
+        $this->category = $category;
 
         return $this;
     }

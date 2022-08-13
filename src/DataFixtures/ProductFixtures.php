@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Product;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class ProductFixtures extends Fixture
 {
@@ -11,7 +12,6 @@ class ProductFixtures extends Fixture
     {
         $product = new Product();
         $product->setProductID('P1');
-        $product->setCatID($this->getReference('Ca1'));
         $product->setName('Keychron Q7');
         $product->setPrice(175.25);
         $product->setImage("https://img.cdn.vncdn.io/nvn/ncdn/store1/51905/ps/20220802/02082022020837_Q7_C.jpg");
@@ -22,7 +22,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P2');
-        $product->setCatID($this->getReference('Ca2'));
         $product->setName('Logitech G PRO X SUPERLIGHT');
         $product->setPrice(135.72);
         $product->setImage("https://product.hstatic.net/1000026716/product/gearvn-chuot-logitech-g-pro-x-superlight-wireless-black-666_83650815ce2e486f9108dbbb17c29159.jpg");
@@ -33,7 +32,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P3');
-        $product->setCatID($this->getReference('Ca2'));
         $product->setName('Glorious Model O');
         $product->setPrice(49.99);
         $product->setImage("https://techspace.vn/wp-content/uploads/2022/03/Chuot-Glorious-Model-O-Wireless-Matte-White-5.png");
@@ -44,7 +42,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P4');
-        $product->setCatID($this->getReference('Ca1'));
         $product->setName('FL-Esports CMK87');
         $product->setPrice(164.53);
         $product->setImage("https://nguyenvu.store/wp-content/uploads/2021/11/e1-1.jpg");
@@ -55,7 +52,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P5');
-        $product->setCatID($this->getReference('Ca1'));
         $product->setName('MK 68');
         $product->setPrice(75.25);
         $product->setImage("https://ae01.alicdn.com/kf/H3ef181d6124a40b58623af28774939edS/GamaKay-MK68-68-Ph-m-RGB-Trao-i-N-ng-Lo-i-C-C-D-y.jpg_640x640.jpg");
@@ -66,7 +62,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P6');
-        $product->setCatID($this->getReference('Ca2'));
         $product->setName('DareU EM901');
         $product->setPrice(23.89);
         $product->setImage("https://lh3.googleusercontent.com/zDcEyTYv-mYeA-ljbodGo2ggtzxDYC0sZ-yt4WsbU1yZZdCO6vLs-x6jWrsaRXA0mKo08DRawg5fOI-5OhM=w500-rw");
@@ -76,7 +71,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P7');
-        $product->setCatID($this->getReference('Ca2'));
         $product->setName('Razer DeathAdder V2 Pro - Black');
         $product->setPrice(129.99);
         $product->setImage("https://assets3.razerzone.com/U-v0ztWgvi4yWGLZbvyOW6dW5oA=/1500x1000/https%3A%2F%2
@@ -87,7 +81,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P8');
-        $product->setCatID($this->getReference('Ca1'));
         $product->setName('Razer BlackWidow V3 Mini');
         $product->setPrice(199.99);
         $product->setImage("https://assets3.razerzone.com/LYYeWfztpxShnXRO9RjisjgukQo=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh2d%2Fh74%2F9206381019166%2FRSL10-
@@ -98,7 +91,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P9');
-        $product->setCatID($this->getReference('Ca1'));
         $product->setName('K70 PRO MINI WIRELESS ');
         $product->setPrice(175.25);
         $product->setImage("https://www.corsair.com/medias/sys_master/images/images/hd6/h41/10195564560414/CH-9189013-KR2/Gallery/K70_PRO_MINI_WIRELESS_PBT_01/-CH-9189013-KR2-Gallery-K70-PRO-MINI-WIRELESS-PBT-01.png_1200Wx1200H");
@@ -109,7 +101,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
         $product = new Product();
         $product->setProductID('P10');
-        $product->setCatID($this->getReference('Ca2'));
         $product->setName('KATAR PRO Wireless');
         $product->setPrice(105.25);
         $product->setImage("https://www.corsair.com/medias/sys_master/images/images/h72/h22/9591321657374/base-katar-pro-wireless-config/Gallery/KATAR_PRO_WIRELESS_01/-base-katar-pro-wireless-config-Gallery-KATAR-PRO-WIRELESS-01.png_1200Wx1200H");
