@@ -9,8 +9,16 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $category = new Category();
+        $category->setCatId('Ca1');
+        $category->setName('Keyboard');
+        $manager->persist($category);
+        $category = new Category();
+        $category->setCatId('Ca2');
+        $category->setName('Mouse');
+        $manager->persist($category);
+        $manager->flush();
+        $manager->flush();
 
         $manager->flush();
     }
