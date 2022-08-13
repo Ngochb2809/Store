@@ -22,7 +22,7 @@
    
          <div class="container mt-3 mb-4">
              {# bs5-nav-ul #}
-            <ul class="nav justify-content-center bg-warning">
+            <ul class="nav justify-content-center bg-light">
                 <li class="nav-item h2">
                     <a class="nav-link" href="{{ path('home')}}">Home</a>
                 </li>
@@ -33,7 +33,7 @@
                     <a class="nav-link" href="{{ path('product_index')}}">Product</a>
                 </li>
                 <li class="nav-item h2">
-                    <a class="nav-link" href="{{ path('category_indes')}}">Category</a>
+                    <a class="nav-link" href="{{ path('category_index')}}">Category</a>
                 </li>
 
                 <li class="nav-item h2">
@@ -50,7 +50,6 @@
                 </li>
             </ul>
         </div>
-        {% endif %}
        
         {# bs5-modal-default #}
         <!-- Modal -->
@@ -71,7 +70,18 @@
             </div>
         </div>
         {% endblock %}
-        
+        {% block flash %}
+        <div class="container col-md-5 text-center mt-3 mb-3">
+            {% for flash in app.session.flashBag.get('Warning') %}
+                 <p class="alert alert-danger">{{ flash }}</p>
+            {% endfor %}
+            {% for flash in app.session.flashBag.get('Info') %}
+                 <p class="alert alert-success">{{ flash }}</p>
+            {% endfor %}
+        </div>
+        {% endblock %}
+
+        {% block body %}{% endblock %}
 
         {% block footer %}
             <div class="container mt-3 mb-3">

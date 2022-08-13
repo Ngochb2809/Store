@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -18,12 +19,12 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: product::class)]
-    private $product;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
+    private $products;
 
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,15 +48,15 @@ class Category
     /**
      * @return Collection<int, product>
      */
-    public function getProduct(): Collection
+    public function getProducts(): Collection
     {
-        return $this->product;
+        return $this->products;
     }
 
     public function addProduct(product $product): self
     {
         if (!$this->product->contains($product)) {
-            $this->product[] = $product;
+            $this->products[] = $product;
             $product->setCategory($this);
         }
 

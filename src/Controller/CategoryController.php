@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +51,7 @@ class CategoryController extends AbstractController
      $category = $this->managerRegistry->getRepository(Category::class)->find($id);
      if ($category == null) {
         $this->addFlash('Warning', 'Category not existed !');
-     } else if (count($category->getBooks()) >= 1){ //check xem category này có ràng buộc với book hay không trước khi xóa
+     } else if (count($category->getProducts()) >= 1){ //check xem category này có ràng buộc với book hay không trước khi xóa
          //nếu có tối thiểu 1 book thì hiển thị lỗi và không cho xóa  
       $this->addFlash('Warning', 'Can not delete this category');
      }   
