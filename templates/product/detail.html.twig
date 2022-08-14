@@ -5,7 +5,7 @@
    <div class="row">
       <div class="col-md-4">
          <div class="card">
-            <img src="{{ product.image }}" width="200" height="250">
+            <img src="{{ product.image }}" width="240" height="240">
          </div>
       </div>
       <div class="col-md-8">
@@ -15,10 +15,10 @@
             </div>
             {% if product.quantity >= 1 %}
                <div class="card-body">
-                  <h3 class="text text-danger">Price: {{ product.price }} $ </h3>
-                  <h3 class="text text-info">Description: {{ product.description }} </h3>
-                  <h3 class="text text-success">In-stock: {{ product.quantity }} </h3>
-                  <h3 class="text text-warning">Category : 
+                  <h3 class="text">Price: {{ product.price }} $ </h3>
+                  <h3 class="text">Description: {{ product.description }} </h3>
+                  <h3 class="text">In-stock: {{ product.quantity }} </h3>
+                  <h3 class="text">Category : 
                      {% if product.category != null %}
                         <a href="{{ path('category_detail', {'id': product.category.id })}}">
                            {{ product.category.name }} 

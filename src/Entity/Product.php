@@ -14,9 +14,6 @@ class Product
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $productid;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
     #[ORM\Column(type: 'float')]
