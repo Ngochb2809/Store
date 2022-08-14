@@ -11,34 +11,38 @@
                <h1 class="text text-primary"> Order Detail </h1>
             </div>
                <div class="card-body">
-                  <table class="table table-light">
-                     <tr>
-                        <th>Customer name</th>
-                        <th>Product name</th>
-                        <th>Product image</th>
-                        <th>Order Date</th>
-                        <th>Order Quantity</th>
-                        <th>Product Price</th>
-                        <th>Total Price</th>
-                     </tr>
-                     <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ product.name }}</td>
-                        <td class="card">
-                            <img src="{{ product.image }}" width="100" height="100">
-                        </td>
-                        <td>{{ app.session.get('datetime') | date ('d/m/Y H:i:s')}}</td>
-                        <td>{{ app.session.get('quantity') }} </td>         
-                        <td>{{ product.price }} $ </td>
-                        <td class="text text-danger">{{ app.session.get('totalprice') }} $ </td>
-                        <li class="nav-item h2">
-                     </tr>
-                  </table>
-                  </li>
-                     <form action="{{ path('product_store')}}">
-                        <input class="btn btn-success"type="submit" value="Back to Store"/> 
-                     </form>   
-                  </li>
+                  {% if app.user %}
+                     <h4 class="modal-title text text-danger">You have no Order</h4>
+                  {% else %}
+                     <table class="table table-light">
+                        <tr>
+                           <th>Customer name</th>
+                           <th>Product name</th>
+                           <th>Product image</th>
+                           <th>Order Date</th>
+                           <th>Order Quantity</th>
+                           <th>Product Price</th>
+                           <th>Total Price</th>
+                        </tr>
+                        <tr>
+                           <td>{{ user.username }}</td>
+                           <td>{{ product.name }}</td>
+                           <td class="card">
+                              <img src="{{ product.image }}" width="100" height="100">
+                           </td>
+                           <td>{{ app.session.get('datetime') | date ('d/m/Y H:i:s')}}</td>
+                           <td>{{ app.session.get('quantity') }} </td>         
+                           <td>{{ product.price }} $ </td>
+                           <td class="text text-danger">{{ app.session.get('totalprice') }} $ </td>
+                           <li class="nav-item h2">
+                        </tr>
+                     </table>
+                     </li>
+                        <form action="{{ path('product_store')}}">
+                           <input class="btn btn-success"type="submit" value="Back to Store"/> 
+                        </form>   
+                     </li>
+                  {% endif %}
                </div>   
          </div>
    </div>

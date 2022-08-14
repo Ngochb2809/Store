@@ -49,20 +49,23 @@ class OrderController extends AbstractController
         $session = new Session();
         //tạo object Order
         $order = new Order;
+        if ($order == null) {
+            $this->addFlash('Warning', 'You have no order !');
         //set các thuộc tính cho object Order
-        $order = $session->get('product');
-        $order = $session->get('user');
-        $order = $session->get('quantity');
-        $order = $session->get('totalprice');
-        $order = $session->get('datetime');
-        return $this->render('order/detail.html.twig');
-        //lưu object Order vào DB bằng Manager
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($order);
-        $manager->flush();
-        // //gửi thông báo về trang Store bằng addFlash()
-        $this->session->getFlashbag()->add("info","Buy successful");
-        return new RedirectResponse($this->router->generate('product_store'));
-
+        }else{
+            $order = $session->get('product');
+            $order = $session->get('user');
+            $order = $session->get('quantity');
+            $order = $session->get('totalprice');
+            $order = $session->get('datetime');
+            return $this->render('order/detail.html.twig');
+            //lưu object Order vào DB bằng Manager
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($order);
+            $manager->flush();
+            // //gửi thông báo về trang Store bằng addFlash()
+            // $this->session->getFlashbag()->add("info","Buy successful");
+            // return new RedirectResponse($this->router->generate('product_store'));
+        }
     }
 }
