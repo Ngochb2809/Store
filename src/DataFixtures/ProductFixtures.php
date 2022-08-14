@@ -11,7 +11,6 @@ class ProductFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $product = new Product();
-        $product->setProductID('P1');
         $product->setName('Keychron Q7');
         $product->setPrice(175.25);
         $product ->setQuantity(rand(10,100));
@@ -22,7 +21,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P2');
         $product->setName('Logitech G PRO X SUPERLIGHT');
         $product->setPrice(135.72);
         $product ->setQuantity(rand(10,100));
@@ -33,7 +31,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P3');
         $product->setName('Glorious Model O');
         $product->setPrice(49.99);
         $product ->setQuantity(rand(10,100));
@@ -44,7 +41,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P4');
         $product->setName('FL-Esports CMK87');
         $product->setPrice(164.53);
         $product ->setQuantity(rand(10,100));
@@ -55,7 +51,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P5');
         $product->setName('MK 68');
         $product->setPrice(75.25);
         $product ->setQuantity(rand(10,100));
@@ -66,7 +61,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P6');
         $product->setName('DareU EM901');
         $product->setPrice(23.89);
         $product ->setQuantity(rand(10,100));
@@ -76,7 +70,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P7');
         $product->setName('Razer DeathAdder V2 Pro - Black');
         $product->setPrice(129.99);
         $product ->setQuantity(rand(10,100));
@@ -86,7 +79,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P8');
         $product->setName('Razer BlackWidow V3 Mini');
         $product->setPrice(199.99);
         $product ->setQuantity(rand(10,100));
@@ -96,7 +88,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P9');
         $product->setName('K70 PRO MINI WIRELESS ');
         $product->setPrice(175.25);
         $product ->setQuantity(rand(10,100));
@@ -107,7 +98,6 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setProductID('P10');
         $product->setName('KATAR PRO Wireless');
         $product->setPrice(105.25);
         $product ->setQuantity(rand(10,100));

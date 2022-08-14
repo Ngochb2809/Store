@@ -60,10 +60,9 @@ class OrderController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($order);
         $manager->flush();
-        //gửi thông báo về trang Store bằng addFlash()
-        $this->addFlash('Info','Buy successs!');
-        return $this->redirectToRoute("product_store");
-        //quay về trang Store bằng RedirectToRoute()
+        // //gửi thông báo về trang Store bằng addFlash()
+        $this->session->getFlashbag()->add("info","Buy successful");
+        return new RedirectResponse($this->router->generate('product_store'));
 
     }
 }

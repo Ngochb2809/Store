@@ -28,7 +28,8 @@
             <a href="{{ path('category_edit', {'id' : category.id }) }}">
                 <img src="{{ asset('icons8-edit-60.png')}}" width="50" height="50">
             </a>
-            <a href="{{ path('category_delete', {'id' : category.id }) }}">
+            <a href="{{ path('category_delete', {'id' : category.id }) }}"
+                onclick="return confirm('Are you sure to delete this product ?');">
                 <img src="{{ asset('icons8-delete-90.png')}}" width="50" height="50">
             </a>
         </td>
