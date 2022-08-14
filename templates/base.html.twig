@@ -20,14 +20,13 @@
 
         {% block header %}
    
-         <div class="container mt-3 mb-4">
+         {% block header %}
+        {% if is_granted ('ROLE_ADMIN') %}
+             <div class="container mt-3 mb-4">
              {# bs5-nav-ul #}
             <ul class="nav justify-content-center bg-light">
                 <li class="nav-item h2">
                     <a class="nav-link" href="{{ path('home')}}">Home</a>
-                </li>
-                <li class="nav-item h2">
-                    <a class="nav-link" href="{{ path('product_store')}}">Store</a>
                 </li>
                 <li class="nav-item h2">
                     <a class="nav-link" href="{{ path('product_index')}}">Product</a>
@@ -35,7 +34,29 @@
                 <li class="nav-item h2">
                     <a class="nav-link" href="{{ path('category_index')}}">Category</a>
                 </li>
-
+                <li class="nav-item h2">
+                    <a class="nav-link" href="#">Order</a>
+                </li>
+                <li class="nav-item h2">
+                    <a class="nav-link" href="{{ path('app_logout')}}"><i><u>Logout 
+                     {# user already logged-in => show username #}
+                    {% if app.user != null %}
+                           ({{ app.user.username }})
+                    {% endif %}
+                    </u></i></a>
+                </li>
+            </ul>
+        </div>
+        {% else %}  <!-- ROLE_CUSTOMER -->
+         <div class="container mt-3 mb-4">
+             {# bs5-nav-ul #}
+            <ul class="nav justify-content-center bg-warning">
+                <li class="nav-item h2">
+                    <a class="nav-link" href="{{ path('home')}}">Home</a>
+                </li>
+                <li class="nav-item h2">
+                    <a class="nav-link" href="{{ path('product.store')}}">Store</a>
+                </li>
                 <li class="nav-item h2">
                     <a class="nav-link" href="#">My Order</a>
                 </li>
@@ -44,12 +65,17 @@
                     >About</a>
                 </li>
                 <li class="nav-item h2">
-                    <a class="nav-link" href=""><i><u>Logout 
+                    <a class="nav-link" href="{{ path('app_logout')}}"><i><u>Logout 
                      {# user already logged-in => show username #}
+                    {% if app.user != null %}
+                           ({{ app.user.username }})
+                    {% endif %}
                     </u></i></a>
                 </li>
             </ul>
         </div>
+        {% endif %}
+       
        
         {# bs5-modal-default #}
         <!-- Modal -->
@@ -63,7 +89,7 @@
                     <div class="modal-body">
                         <div class="container text-center">
                             <h5 class="text text-success">Web application developed by Symfony</h5>
-                            <img src="https://realvasi.com/wp-content/uploads/2021/11/Symfony-Features.png" width="250" height="250">
+                            <img src="https://wiki.tino.org/wp-content/uploads/2021/05/word-image-226.jpeg" width="250" height="250">
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ class ProductController extends AbstractController
    {
       $this->managerRegistry = $managerRegistry;
    } 
+   #[IsGranted("ROLE_ADMIN")]
     #[Route('/index', name: 'product_index')]
    public function productIndex(ProductRepository $productRepository)
    {
@@ -31,6 +32,7 @@ class ProductController extends AbstractController
          ]
       );
    }
+   #[IsGranted("ROLE_CUSTOMER")]
    #[Route('/store', name: 'product_store')]
    public function productStore()
    {
@@ -57,6 +59,7 @@ class ProductController extends AbstractController
          ]
       );
    }
+   #[IsGranted("ROLE_ADMIN")]
    #[Route('/delete/{id}', name: 'product_delete')]
    public function productDelete($id,ManagerRegistry $managerRegistry)
    {
