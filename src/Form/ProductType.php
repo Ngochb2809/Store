@@ -18,10 +18,6 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('productID', TextType::class, [
-                'required' => true,
-                'label' => 'Product ID'
-            ])
             ->add('name',  TextType::class,
             [
                 'required' => true,
@@ -46,7 +42,7 @@ class ProductType extends AbstractType
                     'maxlength' => 500
                 ]
             ])
-            ->add('image', FileType::class,
+            ->add('image', TextType::class,
             [
                 'label' => 'Product image',
         

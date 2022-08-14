@@ -39,19 +39,6 @@ class Product
     {
         return $this->id;
     }
-
-    public function getProductid(): ?string
-    {
-        return $this->productid;
-    }
-
-    public function setProductid(string $productid): self
-    {
-        $this->productid = $productid;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->name;

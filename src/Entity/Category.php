@@ -55,7 +55,7 @@ class Category
 
     public function addProduct(product $product): self
     {
-        if (!$this->product->contains($product)) {
+        if (!$this->products->contains($product)) {
             $this->products[] = $product;
             $product->setCategory($this);
         }
@@ -65,7 +65,7 @@ class Category
 
     public function removeProduct(product $product): self
     {
-        if ($this->product->removeElement($product)) {
+        if ($this->products->removeElement($product)) {
             // set the owning side to null (unless already changed)
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
