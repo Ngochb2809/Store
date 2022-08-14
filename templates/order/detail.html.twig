@@ -4,9 +4,8 @@
 {# gọi biến session (được tạo ở controller) #}
 {% set product = app.session.get('product') %}
 {% set user = app.session.get('user') %}
-<div class="container text-center mt-3">
+<div class="container col-md-6 text-center mt-6">
    <div class="row">
-      <div class="col-md-8">
          <div class="card">
             <div class="card-header">
                <h1 class="text text-primary"> Order Detail </h1>
@@ -32,11 +31,16 @@
                         <td>{{ app.session.get('quantity') }} </td>         
                         <td>{{ product.price }} $ </td>
                         <td class="text text-danger">{{ app.session.get('totalprice') }} $ </td>
+                        <li class="nav-item h2">
                      </tr>
                   </table>
-               </div>  
+                  </li>
+                     <form action="{{ path('product_store')}}" method="post">
+                        <input class="btn btn-success"type="submit" value="Back to Store"/> 
+                     </form>   
+                  </li>
+               </div>   
          </div>
-      </div>
    </div>
 </div>
 {% endblock %}
