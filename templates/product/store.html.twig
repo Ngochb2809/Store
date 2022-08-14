@@ -68,13 +68,13 @@
 									</h3>
 								</div>
 								<div class="card-footer">
-									{# <form action="{{ path('add_to_cart') }}" method="post"> #}
+									<form action="{{ path('add_to_cart') }}" method="post">
 										<div class="form-group mb-3">
 											<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 										</div>
 										<input type="hidden" name="id" value="{{ product.id }}">
-										{# <input class="btn btn-success" type="submit" value="Add to cart"/> #}
-									{# </form> #}
+										<input class="btn btn-success" type="submit" value="Add to cart"/> 
+									</form>
 								</div>
 							{% else %}
 								<div class="card-body">
