@@ -15,16 +15,12 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/product')]
 class ProductController extends AbstractController
 {
-   public function __construct(ManagerRegistry $managerRegistry)
-   {
-      $this->managerRegistry = $managerRegistry;
-   } 
    #[IsGranted("ROLE_ADMIN")]
-    #[Route('/index', name: 'product_index')]
+   #[Route('/index', name: 'product_index')]
    public function productIndex(ProductRepository $productRepository)
    {
-      $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-      //$products = $productRepository->sortProductByIdDesc();
+      //$products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+      $products = $productRepository->sortProductByIdDesc();
       return $this->render(
          'product/index.html.twig',
          [
@@ -95,24 +91,65 @@ class ProductController extends AbstractController
    public function productEdit($id, Request $request,ManagerRegistry $managerRegistry)
    {
       $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-
-        if ($product == null) {
-            $this->addFlash('Warning', 'Product not existed !');
-         } else {
-            $form = $this->createForm(ProductType::class,$product);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $manager = $this->managerRegistry->getManager();
-                $manager->persist($product);
-                $manager->flush();
-                $this->addFlash('Info', 'Edit product succeed !');
-                return $this->redirectToRoute("product_index");
-            }
-            return $this->renderForm("product/edit.html.twig",
-            [
-                'productForm' => $form
-            ]);
+      if ($product == null) {
+         $this->addFlash('Warning', 'Product not existed !');
+      } else {
+         $form = $this->createForm(ProductType::class,$product);
+         $form->handleRequest($request);
+         if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->managerRegistry->getManager();
+            $manager->persist($product);
+            $manager->flush();
+            $this->addFlash('Info', 'Edit product succeed !');
+            return $this->redirectToRoute("product_index");
          }
+         return $this->renderForm("product/edit.html.twig",
+         [
+            'productForm' => $form
+         ]);
+      }
+   }
+   #[IsGranted('ROLE_CUSTOMER')]
+   #[Route('/price/asc', name: 'sort_product_price_ascending')]
+   public function sortProductPriceAscending(ProductRepository $productRepository)
+   {
+      $products = $productRepository->sortProductPriceAsc();
+      return $this->render(
+         'product/store.html.twig',
+         [
+            'products' => $products
+         ]
+      );
+   }
+
+   #[IsGranted('ROLE_CUSTOMER')]
+   #[Route('/price/desc', name: 'sort_product_price_descending')]
+   public function sortProductPriceDescending(ProductRepository $productRepository)
+   {
+      $products = $productRepository->sortProductPriceDesc();
+      return $this->render(
+         'product/store.html.twig',
+         [
+            'products' => $products
+         ]
+      );
+   }
+
+   #[IsGranted('ROLE_CUSTOMER')]
+   #[Route('/search', name: 'search_product_title')]
+   public function searchProduct(ProductRepository $productRepository, Request $request)
+   {
+      $key = $request->get('keyword');
+      $products = $productRepository->searchProductByTitle($key);
+      //   if ($products == null) {
+      //      $this->addFlash('Warning', "No product found");
+      //   }
+      return $this->render(
+         'product/store.html.twig',
+         [
+            'products' => $products
+         ]
+      );
    }
 
 

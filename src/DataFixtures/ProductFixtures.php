@@ -90,7 +90,7 @@ class ProductFixtures extends Fixture
         $product->setName('Razer BlackWidow V3 Mini');
         $product->setPrice(199.99);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("");
+        $product->setImage("https://ae01.alicdn.com/kf/H613ddba43f8c4a5197c9fcc8a0359e4fZ/B-n-Ph-m-Razer-BlackWidow-V3-Mini-HyperSpeed-M-u-V-ng-Xanh-C-ng.jpg_Q90.jpg_.webp");
         $product->setDescription('Wireless 65% Mechanical Gaming Keyboard with Razer Chroma™ RGB.');
         $manager->persist($product);
 
@@ -100,7 +100,7 @@ class ProductFixtures extends Fixture
         $product->setName('K70 PRO MINI WIRELESS ');
         $product->setPrice(175.25);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("");
+        $product->setImage("https://fmen.net/wp-content/uploads/2022/07/Corsair-K70-Pro-Mini-Wireless-Mechanical-Gaming-Keyboard-10.jpg");
         $product->setDescription('The CORSAIR K70 PRO MINI WIRELESS RGB 60% Mechanical Gaming Keyboard is big on both performance and customization, equipped with hyper-fast, sub-1ms 
                 SLIPSTREAM WIRELESS and swappable CHERRY MX keyswitches in a portable profile.');
         $manager->persist($product);
