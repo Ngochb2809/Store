@@ -80,8 +80,7 @@ class ProductFixtures extends Fixture
         $product->setName('Razer DeathAdder V2 Pro - Black');
         $product->setPrice(129.99);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("https://assets3.razerzone.com/U-v0ztWgvi4yWGLZbvyOW6dW5oA=/1500x1000/https%3A%2F%2
-                Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh61%2Fhed%2F9086247927838%2FdeathadderV2pro-gallery-1500x1000-img7.jpg");
+        $product->setImage("https://product.hstatic.net/1000026716/product/gearvn-chuot-razer-deathadder-v2-pro-666_3c8fd48ca8fc4ede9991d810da6297a3.jpg");
         $product->setDescription('Wireless gaming mouse with best-in-class ergonomics.');
         $manager->persist($product);
 
@@ -91,8 +90,7 @@ class ProductFixtures extends Fixture
         $product->setName('Razer BlackWidow V3 Mini');
         $product->setPrice(199.99);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("https://assets3.razerzone.com/LYYeWfztpxShnXRO9RjisjgukQo=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh2d%2Fh74%2F9206381019166%2FRSL10-
-                blackwidow-v3-mini-hyperspeed-phantom-1500x1000-1.jpg");
+        $product->setImage("");
         $product->setDescription('Wireless 65% Mechanical Gaming Keyboard with Razer Chroma™ RGB.');
         $manager->persist($product);
 
@@ -102,7 +100,7 @@ class ProductFixtures extends Fixture
         $product->setName('K70 PRO MINI WIRELESS ');
         $product->setPrice(175.25);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("https://www.corsair.com/medias/sys_master/images/images/hd6/h41/10195564560414/CH-9189013-KR2/Gallery/K70_PRO_MINI_WIRELESS_PBT_01/-CH-9189013-KR2-Gallery-K70-PRO-MINI-WIRELESS-PBT-01.png_1200Wx1200H");
+        $product->setImage("");
         $product->setDescription('The CORSAIR K70 PRO MINI WIRELESS RGB 60% Mechanical Gaming Keyboard is big on both performance and customization, equipped with hyper-fast, sub-1ms 
                 SLIPSTREAM WIRELESS and swappable CHERRY MX keyswitches in a portable profile.');
         $manager->persist($product);
