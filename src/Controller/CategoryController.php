@@ -52,8 +52,7 @@ class CategoryController extends AbstractController
      $category = $this->managerRegistry->getRepository(Category::class)->find($id);
      if ($category == null) {
         $this->addFlash('Warning', 'Category not existed !');
-     } else if (count($category->getProducts()) >= 1){ //check xem category này có ràng buộc với book hay không trước khi xóa
-         //nếu có tối thiểu 1 book thì hiển thị lỗi và không cho xóa  
+     } else if (count($category->getProducts()) >= 1){
       $this->addFlash('Warning', 'Can not delete this category');
      }   
      else {

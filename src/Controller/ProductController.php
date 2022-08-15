@@ -16,6 +16,11 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/product')]
 class ProductController extends AbstractController
 {
+   public function __construct(ManagerRegistry $managerRegistry)
+   {
+      $this->managerRegistry = $managerRegistry;
+   } 
+
    #[IsGranted("ROLE_ADMIN")]
    #[Route('/index', name: 'product_index')]
    public function productIndex(ProductRepository $productRepository)

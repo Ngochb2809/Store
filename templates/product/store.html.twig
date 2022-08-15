@@ -1,9 +1,9 @@
-{# giao diện dạng thẻ cho khách hàng xem #}
+
 {% extends 'base.html.twig' %}
 
 {% block body %}
 	<div class="container text-center mt-4">
-		<h1 class="alert alert-danger">Store</h1>
+		<h1 class="alert alert-title">Store</h1>
 		<div class="row">
 			<div class="col">
 				<div class="row">
@@ -42,7 +42,7 @@
 			<div class="row">
 				{% for product in products %}
 					{% if products | length >=3 %}
-						<div class="col-md-3 mt-3">
+						<div class="col-md-4 mt-3">
 					{% else %}
 						<div class="col mt-3">
 					{% endif %}
