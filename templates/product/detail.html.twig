@@ -10,35 +10,30 @@
          </div>
       </div>
       <div class="col-md-8">
-         <div class="card">
-            <div class="card-header">
-               <h1 class="text text-primary text-center">{{ product.name }} </h1>
-            </div>
+         <div class="card">     
+         <table class="table table-bordered">      
+            <th colspan="2" class="bg-success text-warning">Category Detail</th>
             {% if product.quantity >= 1 %}
                <div class="card-body">
-                  {# <h3 class="text">Price: {{ product.price }} $ </h3>
-                  <h3 class="text">Description: {{ product.description }} </h3>
-                  <h3 class="text">In-stock: {{ product.quantity }} </h3>
-                  <h3 class="text">Category : 
-                     {% if product.category != null %}
-                        <a href="{{ path('category_detail', {'id': product.category.id })}}">
-                           {{ product.category.name }} 
-                        </a>
-                     {% else %}
-                        N/A
-                     {% endif %}
-                  </h3> #}
                   <table class="table table-bordered">
                      <tr>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Category </th>
+                        <th >Name</th>
+                        <td><h3 class="text">{{ product.name }}</h3></td>
                      </tr>
-                     <tr>
+                     <tr>   
+                        <th >Price</th>
                         <td><h3 class="text">{{ product.price }} $ </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Description</th>
                         <td><h3 class="text">{{ product.description }} </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Quantity</th>
                         <td><h3 class="text">{{ product.quantity }} </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Category </th>
                         <td> <h3 class="text">
                               {% if product.category != null %}
                                  <a href="{{ path('category_detail', {'id': product.category.id })}}">
@@ -49,33 +44,30 @@
                               {% endif %}
                         </h3></td>         
                      </tr>
-                  </table>
-               </div>
+         </table>
+         </div>
             {% else %}
-               {# <div class="card-body">
-                  <h3 class="text text-danger">Price: {{ product.price }} $ </h3>
-                  <h3 class="text text-info">Description: {{ product.description }} </h3>
-                  <h3 class="text text-warning">Category: 
-                     {% if product.category != null %}
-                        <a href="{{ path('category_detail', {'id': product.category.id })}}">
-                           {{ product.category.name }} 
-                        </a>
-                     {% else %}
-                        <i>N/A</i>
-                     {% endif %}
-                  </h3>
-               </div> #}
                <table class="table table-bordered">
+                    <div class="card-body">
+                  <table class="table table-bordered">
                      <tr>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Category </th>
+                        <th >Name</th>
+                        <td><h3 class="text">{{ product.name }}</h3></td>
                      </tr>
-                     <tr>
+                     <tr>   
+                        <th >Price</th>
                         <td><h3 class="text">{{ product.price }} $ </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Description</th>
                         <td><h3 class="text">{{ product.description }} </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Quantity</th>
                         <td><h3 class="text">{{ product.quantity }} </h3></td>
+                     </tr>
+                     <tr>    
+                        <th >Category </th>
                         <td> <h3 class="text">
                               {% if product.category != null %}
                                  <a href="{{ path('category_detail', {'id': product.category.id })}}">

@@ -2,38 +2,34 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Order;
 use App\Entity\Product;
-use App\Controller\OrderController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class OrderController extends AbstractController
 {
-    public function __construct()
+    public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->session = new Session();
+        $this->managerRegistry = $managerRegistry;
     }
     #[Route('/cart/info', name: 'add_to_cart')]
     public function addToCart (Request $request) {
-       //khởi tạo session
        $this->session = $request->getSession();
-       //lấy dữ liệu gửi từ form Add To Cart
        $product = $this->getDoctrine()->getRepository(Product::class)->find($request->get('id'));
        $quantity = $request->get('quantity');
-       //tạo biến date để lưu thông tin về ngày hiện tại
        $date = date('Y/m/d');  
-       //tạo biến datetime để lưu thông tin về ngày giờ hiện tại
        $datetime = date('Y/m/d H:i:s');  
-       //tạo biến user để lấy ra user hiện tại (đang login)
        $user = $this->getUser();
-       //tạo biến totalprice để lưu tổng tiền của đơn hàng
        $productprice = $product->getPrice();
        $totalprice = $productprice * $quantity;
-       //set biến session (global variable) để lưu dữ liệu 
        $this->session->set('product', $product);
        $this->session->set('user', $user);
        $this->session->set('quantity', $quantity);
@@ -43,29 +39,51 @@ class OrderController extends AbstractController
     }
 
     #[Route('/order/make', name: 'make_order')]
-    public function orderMake() 
+    public function orderMake(Request $request, ManagerRegistry $managerRegistry) 
     {
-        //khởi tạo session;
-        $session = new Session();
-        //tạo object Order
+       //khởi tạo session
+       $session = new Session();
+       //giảm quantity của product sau khi order
+       $product = $this->getDoctrine()->getRepository(Product::class)->find($session->get('id'));
+       $product_quantity = $product->getQuantity();
+       $order_quantity = $session->get('quantity');
+       $new_quantity = $product_quantity - $order_quantity;
+       $product->setQuantity($new_quantity);
+       $quantity = $request->get('quantity');
+       $date = date('Y/m/d');  
+       $datetime = date('Y/m/d H:i:s');  
+       $user = $this->getUser();
+       $productprice = $product->getPrice();
+       $totalprice = $productprice * $quantity;
+
+       //tạo object Order để lưu thông tin đơn hàng
         $order = new Order;
-        if ($order == null) {
-            $this->addFlash('Warning', 'You have no order !');
-        //set các thuộc tính cho object Order
-        }else{
-            $order = $session->get('product');
-            $order = $session->get('user');
-            $order = $session->get('quantity');
-            $order = $session->get('totalprice');
-            $order = $session->get('datetime');
-            return $this->render('order/detail.html.twig');
-            //lưu object Order vào DB bằng Manager
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($order);
-            $manager->flush();
-            // //gửi thông báo về trang Store bằng addFlash()
-            // $this->session->getFlashbag()->add("info","Buy successful");
-            // return new RedirectResponse($this->router->generate('product_store'));
-        }
+
+       //set từng thuộc tính cho bảng Order 
+
+
+    //    $order = $session->get('product');
+    //    $order = $session->get('user');
+    //    $order = $session->get('quantity');
+    //    $order = $session->get('totalprice');
+    //    $order = $session->get('datetime');
+
+    //    $order->setPrice();
+    //    $order->setUser();
+    //    $order->setProduct();
+    //    $order->setTotalprice();
+    //    $order->setDatetime();
+
+       //dùng Manager để lưu object vào DB
+       $manager = $managerRegistry->getManager();
+       $manager->persist($product);
+       $manager->flush();
+
+       //gửi thông báo về view bằng addFlash
+       $this->addFlash('Info', 'Order product successfully !');
+ 
+       //redirect về trang product store
+       return $this->redirectToRoute('product_store');
+             
     }
 }
