@@ -25,8 +25,8 @@ class ProductController extends AbstractController
    #[Route('/index', name: 'product_index')]
    public function productIndex(ProductRepository $productRepository)
    {
-      //$products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-      $products = $productRepository->sortProductByIdDesc();
+      $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+      //$products = $productRepository->sortProductByIdDesc();
       return $this->render(
          'product/index.html.twig',
          [

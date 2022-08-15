@@ -39,51 +39,38 @@ class OrderController extends AbstractController
     }
 
     #[Route('/order/make', name: 'make_order')]
-    public function orderMake(Request $request, ManagerRegistry $managerRegistry) 
+    public function orderMake(Request $request) 
     {
-       //khởi tạo session
-       $session = new Session();
-       //giảm quantity của product sau khi order
-       $product = $this->getDoctrine()->getRepository(Product::class)->find($session->get('id'));
-       $product_quantity = $product->getQuantity();
-       $order_quantity = $session->get('quantity');
-       $new_quantity = $product_quantity - $order_quantity;
-       $product->setQuantity($new_quantity);
-       $quantity = $request->get('quantity');
-       $date = date('Y/m/d');  
-       $datetime = date('Y/m/d H:i:s');  
-       $user = $this->getUser();
-       $productprice = $product->getPrice();
-       $totalprice = $productprice * $quantity;
+      //khởi tạo session
+      $session = new Session();
+      //tạo object Order để lưu thông tin đơn hàng
+      $order = new Order();
+      //giảm quantity của product sau khi order
+      $product = $this->getDoctrine()->getRepository(Product::class)->find($session->get('productid'));
+      $product_quantity = $product->getQuantity();
+      $order_quantity = $session->get('quantity');
+      $new_quantity = $product_quantity - $order_quantity;
+      $product->setQuantity($new_quantity);
 
-       //tạo object Order để lưu thông tin đơn hàng
-        $order = new Order;
+      //set từng thuộc tính cho bảng Order 
 
-       //set từng thuộc tính cho bảng Order 
+      $order->setPrice('totalprice',$totalprice);
+      $session->setUser('user', $user);
+      $session->setQuantity('quantity', $quantity);
+      $session->setTotalprice('totalprice', $totalprice);
+      $session->setDatetime('datetime', $datetime);
 
 
-    //    $order = $session->get('product');
-    //    $order = $session->get('user');
-    //    $order = $session->get('quantity');
-    //    $order = $session->get('totalprice');
-    //    $order = $session->get('datetime');
+      //dùng Manager để lưu object vào DB
+      $manager = $managerRegistry->getManager();
+      $manager->persist($product);
+      $manager->flush();
 
-    //    $order->setPrice();
-    //    $order->setUser();
-    //    $order->setProduct();
-    //    $order->setTotalprice();
-    //    $order->setDatetime();
+      //gửi thông báo về view bằng addFlash
+      $this->addFlash('Info', 'Order product successfully !');
 
-       //dùng Manager để lưu object vào DB
-       $manager = $managerRegistry->getManager();
-       $manager->persist($product);
-       $manager->flush();
-
-       //gửi thông báo về view bằng addFlash
-       $this->addFlash('Info', 'Order product successfully !');
- 
-       //redirect về trang product store
-       return $this->redirectToRoute('product_store');
+      //redirect về trang product store
+      return $this->redirectToRoute('product_list',);
              
     }
 }
