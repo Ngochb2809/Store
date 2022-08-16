@@ -42,6 +42,7 @@ class OrderController extends AbstractController
    #[Route('/order', name: 'make_order')]
     public function orderMake(Request $request,ManagerRegistry $managerRegistry) 
     {
+        
         $this->addFlash('Info', 'Order product successfully !');
         return $this->redirectToRoute('product_store'); 
     }
