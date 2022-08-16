@@ -20,44 +20,29 @@ class OrderController extends AbstractController
         $this->session = new Session();
         $this->managerRegistry = $managerRegistry;
     }
-    #[Route('/cart/info', name: 'add_to_cart')]
+    #[Route('/cart', name: 'add_to_cart')]
     public function addToCart (Request $request) {
-      $session = $request->getSession();
-      $product = $this->getDoctrine()->getRepository(Product::class)->find($request->get('id'));
-      $quantity = $request->get('quantity');
-      $date = date('Y/m/d');  
-      $datetime = date('Y/m/d H:i:s');  
-      $user = $this->getUser();
-      $productprice = $product->getPrice();
-      $totalprice = $productprice * $quantity;
-      $session->set('product', $product);
-      $session->set('user', $user);
-      $session->set('quantity', $quantity);
-      $session->set('totalprice', $totalprice);
-      $session->set('datetime', $datetime);
-      return $this->render('cart/detail.html.twig');
-   }
-   #[Route('/order/make', name: 'make_order')]
-    public function orderMake() 
-    {
         $session = $request->getSession();
-        $id = $request->get('productid');
-        $session->set('productid', $id);
-        $product=$this->getDoctrine()->getRepository(Product::class)->find($id);
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($request->get('id'));
         $session->set('product', $product);
-        $date = date("Y-m-d");
+        $quantity = $request->get('quantity');
+        $session->set('quantity', $quantity);
+        $date = date('Y/m/d');  //get current date
         $session->set('date', $date);
-        $datetime = date("Y-m-d H:i:s");
+        $datetime = date('Y/m/d H:i:s'); //get current date + time
+        $session->set('date', $date);
         $session->set('datetime', $datetime);
-        $user = $this->getUser();
+        $product_price = $product->getPrice();
+        $order_price = $product_price * $quantity;
+        $session->set('price', $order_price);
+        $user = $this->getUser(); //get current user
         $session->set('user', $user);
-        $manager = $managerRegistry->getManager();
-        $manager->persist($product);
-        $manager->flush();
-        //gửi thông báo về view bằng addFlash
+        return $this->render('cart/detail.html.twig');
+   }
+   #[Route('/order', name: 'make_order')]
+    public function orderMake(Request $request,ManagerRegistry $managerRegistry) 
+    {
         $this->addFlash('Info', 'Order product successfully !');
-  
-        //redirect về trang product store
         return $this->redirectToRoute('product_store'); 
     }
 

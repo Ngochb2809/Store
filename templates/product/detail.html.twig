@@ -18,23 +18,23 @@
                   <table class="table table-bordered">
                      <tr>
                         <th >Name</th>
-                        <td><h3 class="text">{{ product.name }}</h3></td>
+                        <td><p class="text">{{ product.name }}</p></td>
                      </tr>
                      <tr>   
                         <th >Price</th>
-                        <td><h3 class="text">{{ product.price }} $ </h3></td>
+                        <td><p class="text">{{ product.price }} $ </p></td>
                      </tr>
                      <tr>    
                         <th >Description</th>
-                        <td><h3 class="text">{{ product.description }} </h3></td>
+                        <td><p class="text">{{ product.description }} </p></td>
                      </tr>
                      <tr>    
                         <th >Quantity</th>
-                        <td><h3 class="text">{{ product.quantity }} </h3></td>
+                        <td><p class="text">{{ product.quantity }} </p></td>
                      </tr>
                      <tr>    
                         <th >Category </th>
-                        <td> <h3 class="text">
+                        <td> <p class="text">
                               {% if product.category != null %}
                                  <a href="{{ path('category_detail', {'id': product.category.id })}}">
                                  {{ product.category.name }} 
@@ -42,7 +42,7 @@
                               {% else %}
                                   N/A
                               {% endif %}
-                        </h3></td>         
+                        </p></td>         
                      </tr>
          </table>
          </div>
@@ -52,23 +52,23 @@
                   <table class="table table-bordered">
                      <tr>
                         <th >Name</th>
-                        <td><h3 class="text">{{ product.name }}</h3></td>
+                        <td><p class="text">{{ product.name }}</p></td>
                      </tr>
                      <tr>   
                         <th >Price</th>
-                        <td><h3 class="text">{{ product.price }} $ </h3></td>
+                        <td><p class="text">{{ product.price }} $ </p></td>
                      </tr>
                      <tr>    
                         <th >Description</th>
-                        <td><h3 class="text">{{ product.description }} </h3></td>
+                        <td><p class="text">{{ product.description }} </p></td>
                      </tr>
                      <tr>    
                         <th >Quantity</th>
-                        <td><h3 class="text">{{ product.quantity }} </h3></td>
+                        <td><p class="text">{{ product.quantity }} </p></td>
                      </tr>
                      <tr>    
                         <th >Category </th>
-                        <td> <h3 class="text">
+                        <td> <p class="text">
                               {% if product.category != null %}
                                  <a href="{{ path('category_detail', {'id': product.category.id })}}">
                                  {{ product.category.name }} 
@@ -76,7 +76,7 @@
                               {% else %}
                                   N/A
                               {% endif %}
-                        </h3></td>         
+                        </p></td>         
                      </tr>
                   </table>
             {% endif %}       
