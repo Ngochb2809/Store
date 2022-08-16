@@ -18,9 +18,8 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
    public function handle(Request $request, AccessDeniedException $accessDeniedException)
    {
-      //gửi thông báo lỗi truy cập về view bằng flash
+  
       $this->session->getFlashbag()->add("Warning","Unauthorized access");
-      //redirect về trang chỉ định nếu truy cập trái phép (login)
       return new RedirectResponse($this->router->generate('app_login'));
    }
 }

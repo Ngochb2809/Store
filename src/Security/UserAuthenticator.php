@@ -50,13 +50,12 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        //lấy thông tin của người dùng hiện tại
+        
         $user = $token->getUser(); 
-        //nếu role của user là ROLE_ADMIN thì redirect về trang home
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
             return new RedirectResponse($this->urlGenerator->generate('home'));
         }
-        //ngược lại nếu role của user là ROLE_CUSTOMER thì redirect về trang store
+        
         return new RedirectResponse($this->urlGenerator->generate('product_store'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
