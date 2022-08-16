@@ -1,6 +1,7 @@
-{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
 
 {% block header %} {% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 <div class="container card col-md-5 mt-3 text-center bg-light">
@@ -16,5 +17,4 @@
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}
-
-{% block footer %}{% endblock %}
+{% block footer %} {% endblock %}

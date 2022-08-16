@@ -28,7 +28,7 @@ class Product
     private $image;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'product')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private $category;
 
     #[ORM\Column(type: 'integer')]
