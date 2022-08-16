@@ -27,21 +27,22 @@ class OrderController extends AbstractController
         $session->set('product', $product);
         $quantity = $request->get('quantity');
         $session->set('quantity', $quantity);
-        $date = date('Y/m/d');  //get current date
+        $date = date('Y/m/d');  
         $session->set('date', $date);
-        $datetime = date('Y/m/d H:i:s'); //get current date + time
+        $datetime = date('Y/m/d H:i:s'); 
         $session->set('date', $date);
         $session->set('datetime', $datetime);
         $product_price = $product->getPrice();
         $order_price = $product_price * $quantity;
         $session->set('price', $order_price);
-        $user = $this->getUser(); //get current user
+        $user = $this->getUser(); 
         $session->set('user', $user);
         return $this->render('cart/detail.html.twig');
    }
    #[Route('/order', name: 'make_order')]
     public function orderMake(Request $request,ManagerRegistry $managerRegistry) 
     {
+    
         
         $this->addFlash('Info', 'Order product successfully !');
         return $this->redirectToRoute('product_store'); 

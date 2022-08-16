@@ -20,14 +20,14 @@ class UserFitures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        //tạo user với role Admin
+        
         $user = new User;
         $user->setUsername("admin");
         $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($this->hasher->hashPassword($user,"123456"));
         $manager->persist($user);
 
-        //tạo user với role Customer
+       
         $user = new User;
         $user->setUsername("customer");
         $user->setRoles(['ROLE_CUSTOMER']);
