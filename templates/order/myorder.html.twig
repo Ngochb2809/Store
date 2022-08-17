@@ -6,7 +6,7 @@
 <div class="container col-md-8 text-center mt-3">
 <table class="table table-light">
     <tr>
-        <th colspan="16" class="text text-danger"><h1>Product List</h1></th>
+        <th colspan="15" class="text text-danger"><h1>Product List</h1></th>
     </tr>
     <tr>
         <th class="text text-primary">Order Id</th>
@@ -15,7 +15,6 @@
         <th colspan="2" class="text text-primary">Order Quantity</th>
         <th colspan="2" class="text text-primary">Total Price</th>
         <th class="text text-primary">Order Date</th>
-        <th class="text text-primary">Action</th>
     </tr>
     {% for order in orders %}
     <tr>
@@ -35,15 +34,9 @@
           <td>
             <td class="text text-success">{{order.datetime | date('Y-m-d H:i:s') }}</td>
         </td>
-        <td>
-            <a href="{{ path('order_delete', {'id' : order.id }) }}"
-             onclick="return confirm('Are you sure to delete this order ?');"
-            >
-                <img src="{{ asset('icons8-delete-90.png')}}" width="50" height="50">
-            </a>
-        </td>
     </tr>
     {% endfor %}
 </table>
+ <a class="btn btn-primary" href="{{ path('product_store') }}";>Back to store</a>
 </div>
 {% endblock %}

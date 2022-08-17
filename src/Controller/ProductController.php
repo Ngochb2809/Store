@@ -159,6 +159,18 @@ class ProductController extends AbstractController
          ]
       );
    }
+   #[IsGranted("ROLE_CUSTOMER")]
+   #[Route('/myorder', name: 'myorder_index')]
+   public function myorderIndex(OrderRepository $orderRepository)
+   {
+      $orders = $this->getDoctrine()->getRepository(Order::class)->findAll();
+      return $this->render(
+         'order/myorder.html.twig',
+         [
+            'orders' => $orders
+         ]
+      );
+   }
    #[IsGranted("ROLE_ADMIN")]
    #[Route('/order', name: 'order_index')]
    public function orderIndex(OrderRepository $orderRepository)
@@ -175,16 +187,16 @@ class ProductController extends AbstractController
    #[Route('order/delete/{id}', name: 'order_delete')]
    public function orderDelete($id,OrderRepository $orderRepository)
    {
-      $order = $orderRepository->getRepository(Order::class)->find($id);
-      if ($order == null) {
-         $this->addFlash('Warning', 'Product not existed !');
-      } else {
-         $manager = $managerRegistry->getManager();
-         $manager->remove($order);
-         $manager->flush();
-         $this->addFlash('Info', 'Delete order succeed !');
-      }
-      return $this->redirectToRoute('order_index');
+      $order = $this->managerRegistry->getRepository(Order::class)->find($id);
+     if ($order == null) {
+        $this->addFlash('Warning', 'Order not existed !');
+     } else {
+        $manager = $this->managerRegistry->getManager();
+        $manager->remove($order);
+        $manager->flush();
+        $this->addFlash('Info', 'Delete order succeed !');
+     }
+     return $this->redirectToRoute('order_index');
    }
 
 

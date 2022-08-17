@@ -16,17 +16,19 @@
             </tr>
             <tr>
                
-               <th>Product Title</th>
-               <th>Product Price</th>
-               <th>Order Quantity</th>
+               <th>Cusstomer name</th>
+               <th>Customer id</th>
+               <th>Product name</th>
+               <th>Product Quantity</th>
                <th>Total Price</th>
                <th>Order Date</th>
             </tr>
             <tr>
-               <td>{{ order.id }}</td>
-               <td>$ {{ order.quantity }}</td>
-               <td>{{ order.totalprice  }}</td>
-               <td>$ {{ order.user.username }}</td>
+               <td>{{ order.user.username }}</td>
+               <td>{{ order.user.id }}</td>
+               <td> {{ order.product.name }}</td>
+               <td>{{ order.quantity  }}</td>
+               <td>$ {{ order.totalprice }}</td>
                <td>{{ order.datetime | date('Y-m-d H:i:s') }}</td>
            </tr>
             <tr>

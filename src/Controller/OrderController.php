@@ -24,6 +24,7 @@ class OrderController extends AbstractController
     public function addToCart (Request $request, ManagerRegistry $managerRegistry) {
         $order = new Order();
         $product = $this->getDoctrine()->getRepository(Product::class)->find($request->get('id'));
+        $user = $this->getDoctrine()->getRepository(User::class)->find($request->get('user'));
         $quantity = $request->get('quantity');
         $order->setProduct($product)
         ->setUser($user)
