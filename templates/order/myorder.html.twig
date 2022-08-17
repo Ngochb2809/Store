@@ -18,6 +18,7 @@
         <th class="text text-primary">Order Date</th>
     </tr>
       {% for order in orders %}
+      {% if order.user.username == app.user.username %}
       <tr>
           <td class="text text-success">{{ order.user.username }}</td>
           <td class="text text-success">{{ order.id }}</td>
@@ -37,6 +38,7 @@
               <td class="text text-success">{{order.datetime | date('Y-m-d H:i:s') }}</td>
           </td>
       </tr>
+      {% endif %}
       {% endfor %}
 </table>
  <a class="btn btn-primary" href="{{ path('product_store') }}";>Back to store</a>
