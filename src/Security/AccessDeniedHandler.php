@@ -18,7 +18,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
    public function handle(Request $request, AccessDeniedException $accessDeniedException)
    {
-  
+      
       $this->session->getFlashbag()->add("Warning","Unauthorized access");
       return new RedirectResponse($this->router->generate('app_login'));
    }

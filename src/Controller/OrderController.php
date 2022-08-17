@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,34 +19,27 @@ class OrderController extends AbstractController
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->session = new Session();
-        $this->managerRegistry = $managerRegistry;
     }
     #[Route('/cart', name: 'add_to_cart')]
-    public function addToCart (Request $request) {
-        $session = $request->getSession();
+    public function addToCart (Request $request, ManagerRegistry $managerRegistry) {
+        $order = new Order();
         $product = $this->getDoctrine()->getRepository(Product::class)->find($request->get('id'));
-        $session->set('product', $product);
         $quantity = $request->get('quantity');
-        $session->set('quantity', $quantity);
-        $date = date('Y/m/d');  
-        $session->set('date', $date);
-        $datetime = date('Y/m/d H:i:s'); 
-        $session->set('date', $date);
-        $session->set('datetime', $datetime);
-        $product_price = $product->getPrice();
-        $order_price = $product_price * $quantity;
-        $session->set('price', $order_price);
-        $user = $this->getUser(); 
-        $session->set('user', $user);
-        return $this->render('cart/detail.html.twig');
-   }
-   #[Route('/order', name: 'make_order')]
-    public function orderMake(Request $request,ManagerRegistry $managerRegistry) 
-    {
-    
-        
-        $this->addFlash('Info', 'Order product successfully !');
-        return $this->redirectToRoute('product_store'); 
-    }
+        $order->setProduct($product)
+        ->setUser($user)
+        ->setQuantity($quantity)
+        ->setTotalprice($product->getPrice() * $quantity)
+        ->setDatetime(\DateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s')));
+        $manager = $managerRegistry->getManager();
+        $manager->persist($order);
+        $manager->flush();
 
+        //gửi thông báo về view bằng addFlash
+        $this->addFlash('Info', 'Order product successfully !');
+        return $this->render('cart/detail.html.twig',
+    [
+        'order' => $order
+    ]);
+        
+    }
 }

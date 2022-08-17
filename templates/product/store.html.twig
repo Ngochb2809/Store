@@ -44,9 +44,9 @@
 				{% for product in products %}
 					{% if products | length >=3 %}
 						<div class="col-md-4 mt-3">
-					{% else %}
-						<div class="col mt-3">
-					{% endif %}
+					{% else %} 
+						<div class="col mt-3 >
+					 {% endif %}
 						<div class="card p-3">
 							<div class="card-img-top">
 								<a href="{{ path('product_detail', {'id': product.id })}}">
@@ -73,6 +73,7 @@
 											<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 										</div>
 										<input type="hidden" name="id" value="{{ product.id }}">
+										<input type="hidden" name="user" value="{{ app.user.id }}">
 										<input class="btn btn-success" type="submit" value="Add to cart"/> 
 									</form>
 								</div>
@@ -85,9 +86,9 @@
 							{% endif %}
 						</div>
 					</div>
-				{% endfor %}
+				 {% endfor %}
 			</div>
 		</div>
-		{% endif %}
+		 {% endif %} #}
 	</div>
 {% endblock %}

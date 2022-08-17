@@ -21,7 +21,7 @@ class ProductFixtures extends Fixture
 
         $manager->flush();
         $product = new Product();
-        $product->setName('Logitech G PRO X SUPERLIGHT');
+        $product =setName('Logitech G PRO X SUPERLIGHT');
         $product->setPrice(135.72);
         $product ->setQuantity(rand(10,100));
         $product->setImage("https://product.hstatic.net/1000026716/product/gearvn-chuot-logitech-g-pro-x-superlight-wireless-black-666_83650815ce2e486f9108dbbb17c29159.jpg");

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,16 +18,17 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/product')]
 class ProductController extends AbstractController
 {
+
    public function __construct(ManagerRegistry $managerRegistry)
    {
       $this->managerRegistry = $managerRegistry;
    } 
-
    #[IsGranted("ROLE_ADMIN")]
    #[Route('/index', name: 'product_index')]
    public function productIndex(ProductRepository $productRepository)
    {
       $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
+      //$products = $productRepository->sortProductByIdDesc();
       return $this->render(
          'product/index.html.twig',
          [
@@ -155,6 +158,33 @@ class ProductController extends AbstractController
             'products' => $products
          ]
       );
+   }
+   #[IsGranted("ROLE_ADMIN")]
+   #[Route('/order', name: 'order_index')]
+   public function orderIndex(OrderRepository $orderRepository)
+   {
+      $orders = $this->getDoctrine()->getRepository(Order::class)->findAll();
+      return $this->render(
+         'order/index.html.twig',
+         [
+            'orders' => $orders
+         ]
+      );
+   }
+   #[IsGranted("ROLE_ADMIN")]
+   #[Route('order/delete/{id}', name: 'order_delete')]
+   public function orderDelete($id,OrderRepository $orderRepository)
+   {
+      $order = $orderRepository->getRepository(Order::class)->find($id);
+      if ($order == null) {
+         $this->addFlash('Warning', 'Product not existed !');
+      } else {
+         $manager = $managerRegistry->getManager();
+         $manager->remove($order);
+         $manager->flush();
+         $this->addFlash('Info', 'Delete order succeed !');
+      }
+      return $this->redirectToRoute('order_index');
    }
 
 
