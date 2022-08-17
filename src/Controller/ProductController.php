@@ -78,6 +78,7 @@ class ProductController extends AbstractController
       }
       return $this->redirectToRoute('product_index');
    }
+   #[IsGranted("ROLE_ADMIN")]
    #[Route('/add', name: 'product_add')]
    public function productAdd (Request $request) {
       $product = new Product;
@@ -95,6 +96,7 @@ class ProductController extends AbstractController
             'productForm' => $form
       ]);
    }
+   #[IsGranted("ROLE_ADMIN")]
    #[Route('/edit/{id}', name: 'product_edit')]
    public function productEdit($id, Request $request,ManagerRegistry $managerRegistry)
    {
