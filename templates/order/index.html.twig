@@ -12,7 +12,7 @@
     <tr>
         <th class="text text-primary">Order Id</th>
         <th colspan="2" class="text text-primary">Product Name</th>
-        <th colspan="3" class="text text-primary">Product Price</th>
+        <th colspan="2" class="text text-primary">Product Price</th>
         <th colspan="2" class="text text-primary">Order Quantity</th>
         <th colspan="2" class="text text-primary">Total Price</th>
         <th class="text text-primary">Order Date</th>
@@ -22,7 +22,7 @@
     <tr>
         <td class="text text-success">{{ order.id }}</td>
         <td>
-            <td class="text text-success">{{ order.product.name }}</td>
+            <p class="text"><a href="{{ path('product_detail', {'id': order.product.id })}}">{{ order.product.name }} </p>
         </td>
           <td>
             <td class="text text-success">{{ order.product.price }}</td>
