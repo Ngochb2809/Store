@@ -22,19 +22,19 @@
     <tr>
         <td class="text text-success">{{ order.id }}</td>
         <td>
-            <td class="text text-success">{{order.product.name}}</td>
+            <td class="text text-success">{{ order.product.name }}</td>
         </td>
           <td>
-            <td class="text text-success">{{order.product.price}}</td>
+            <td class="text text-success">{{ order.product.price }}</td>
         </td>
           <td>
-            <td class="text text-success">{{order.quantity}}</td>
+            <td class="text text-success">{{ order.quantity }}</td>
         </td>
           <td>
-            <td class="text text-success">{{order.totalprice}}</td>
+            <td class="text text-success">{{ order.totalprice }}</td>
         </td>
           <td>
-            <td class="text text-success">{{order.datetime | date('Y-m-d H:i:s') }}</td>
+            <td class="text text-success">{{ order.datetime | date('Y-m-d H:i:s') }}</td>
         </td>
         <td>
             <a href="{{ path('order_delete', {'id' : order.id }) }}"
