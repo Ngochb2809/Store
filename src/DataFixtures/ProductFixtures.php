@@ -34,7 +34,7 @@ class ProductFixtures extends Fixture
         $product->setName('Glorious Model O');
         $product->setPrice(49.99);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("https://techspace.vn/wp-content/uploads/2022/03/Chuot-Glorious-Model-O-Wireless-Matte-White-5.png");
+        $product->setImage("https://i0.wp.com/techspace.vn/wp-content/uploads/2021/12/Chuot-Glorious-Model-O-Matte-White-1.webp?fit=768%2C768&ssl=1");
         $product->setDescription('Envisioned by a community of passionate gamers, and developed by a team who accepts nothing less than perfection - Model O 
                 will elevate your play to unimaginable heights.');
         $manager->persist($product);
@@ -44,7 +44,7 @@ class ProductFixtures extends Fixture
         $product->setName('FL-Esports CMK87');
         $product->setPrice(164.53);
         $product ->setQuantity(rand(10,100));
-        $product->setImage("https://nguyenvu.store/wp-content/uploads/2021/11/e1-1.jpg");
+        $product->setImage("https://owlgaming.vn/wp-content/uploads/2022/03/ban-phim-co-fl-esports-cmk87cpm-metal-heart-3-mode.jpg");
         $product->setDescription('The keyboard has an 87-button layout, Cherry Profile with hot swap feature for easy switching. Kailh Box, Cool Mint and FL-CMMK Cercis 
             Switch are 3 types of switches used on this keyboard.');
         $manager->persist($product);

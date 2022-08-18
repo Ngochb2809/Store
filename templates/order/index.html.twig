@@ -11,6 +11,7 @@
     </tr>
     <tr>
         <th class="text text-primary">Order Id</th>
+        <th class="text text-primary">Customer name</th>
         <th colspan="2" class="text text-primary">Product Name</th>
         <th colspan="2" class="text text-primary">Product Price</th>
         <th colspan="2" class="text text-primary">Order Quantity</th>
@@ -21,6 +22,7 @@
     {% for order in orders %}
     <tr>
         <td class="text text-success">{{ order.id }}</td>
+        <td class="text text-success">{{ order.user.username }}</td>
         <td>
             <p class="text"><a href="{{ path('product_detail', {'id': order.product.id })}}">{{ order.product.name }} </p>
         </td>
