@@ -5,7 +5,8 @@
  
 <div class="container col-md-8 text-center mt-3">
 <table class="table table-light">
-    {# Total : {{ products.category. | length}}  #}
+
+    {# Total : {{ products|length}}  #}
     <tr>
         <th colspan="3" class="text text-danger"><h1>Product List</h1></th>
         <th>
@@ -26,7 +27,7 @@
         <td class="text text-success">{{ product.name}}</td>
         <td>
             <a href="{{ path('product_detail', {'id' : product.id }) }}">
-                <img src="{{ product.image }}" width="180" height="160">
+                <img src="{{ product.image }}" width="200" height="160">
             </a>
         </td>
         <td>
