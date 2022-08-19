@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\UserRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -199,6 +200,19 @@ class ProductController extends AbstractController
         $this->addFlash('Info', 'Delete order succeed !');
      }
      return $this->redirectToRoute('order_index');
+   }
+   #[IsGranted("ROLE_ADMIN")]
+   #[Route('/searchUser', name: 'search_user_name')]
+   public function searchUser(OrderRepository $orderRepository, Request $request)
+   {
+      $key = $request->get('keyword');
+      $orders = $orderRepository->searchUserByName($key);
+      return $this->render(
+         'order/index.html.twig',
+         [
+            'orders' => $orders
+         ]
+      );
    }
 
 

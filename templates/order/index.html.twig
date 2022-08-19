@@ -2,22 +2,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% set totalprice = 0 %}
+{% set totalquantity = 0 %}
 
 <div class="container col-md-8 text-center mt-3">
 <div class="col">
 <table class="table table-light">
     <tr>
-        <th colspan="16" class="text text-danger"><h1>Product List</h1></th>
-    </tr>
-    <tr>
-        <th class="text text-primary">Order Id</th>
-        <th class="text text-primary">Customer name</th>
-        <th colspan="2" class="text text-primary">Product Name</th>
-        <th colspan="2" class="text text-primary">Product Price</th>
-        <th colspan="2" class="text text-primary">Order Quantity</th>
-        <th colspan="2" class="text text-primary">Total Price</th>
-        <th class="text text-primary">Order Date</th>
-        <th class="text text-primary">Action</th>
+        <th colspan="16" class="text text-danger"><h1>Order List: {{ orders|length}}</h1></th>
+        <tr>
+            <th class="text text-primary">Order Id</th>
+            <th class="text text-primary">Customer name</th>
+            <th colspan="2" class="text text-primary">Product Name</th>
+            <th colspan="2" class="text text-primary">Product Price</th>
+            <th colspan="2" class="text text-primary">Order Quantity</th>
+            <th colspan="2" class="text text-primary">Total Price</th>
+            <th class="text text-primary">Order Date</th>
+            <th class="text text-primary">Action</th>
     </tr>
     {% for order in orders %}
     <tr>
@@ -28,25 +29,36 @@
         </td>
           <td>
             <td class="text text-success">{{ order.product.price }}</td>
-        </td>
-          <td>
-            <td class="text text-success">{{ order.quantity }}</td>
-        </td>
-          <td>
-            <td class="text text-success">{{ order.totalprice }}</td>
-        </td>
-          <td>
-            <td class="text text-success">{{ order.datetime | date('Y-m-d H:i:s') }}</td>
-        </td>
-        <td>
-            <a href="{{ path('order_delete', {'id' : order.id }) }}"
-             onclick="return confirm('Are you sure to delete this order ?');"
-            >
-                <img src="{{ asset('icons8-delete-90.png')}}" width="50" height="50">
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
+            </td>   
+            <td>
+                <td class="text text-success">{{ order.quantity }}</td>
+            </td>
+            <td>
+                <td class="text text-success">{{ order.totalprice }}</td>
+            </td>
+            <td>
+                <td class="text text-success">{{ order.datetime | date('Y-m-d H:i:s') }}</td>
+            </td>
+            <td>
+                <a href="{{ path('order_delete', {'id' : order.id }) }}"
+                onclick="return confirm('Are you sure to delete this order ?');"
+                >
+                    <img src="{{ asset('icons8-delete-90.png')}}" width="50" height="50">
+                </a>
+            </td>
+        </tr>
+            {% set totalprice = totalprice + order.totalprice %}
+            {% set totalquantity = totalquantity + order.quantity %}
+        
+
+
+        {% endfor %}
+        <tr>
+            <td colspan="6"></td>
+            <td >{{ totalquantity }}</td>
+            <td colspan="3">{{ totalprice }}</td>
+            <td colspan="2"></td>
+        </tr>
 </table>
 </div>
 {% endblock %}
