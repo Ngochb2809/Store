@@ -27,14 +27,6 @@ class CategoryController extends AbstractController
             'categorys' => $categorys
         ]);
    } 
-   #[Route('/list', name: 'category_list')]
-   public function categoryList() {
-      $categorys = $this->getDoctrine()->getRepository(Category::class)->findAll();
-      return $this->render('category/list.html.twig',
-        [
-            'categorys' => $categorys
-        ]);
-   } 
    #[Route('/detail/{id}', name: 'category_detail')]
    public function categoryDetail ($id, CategoryRepository $categoryRepository) {
       $category = $categoryRepository->find($id);

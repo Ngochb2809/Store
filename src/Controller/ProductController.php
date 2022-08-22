@@ -201,19 +201,6 @@ class ProductController extends AbstractController
      }
      return $this->redirectToRoute('order_index');
    }
-   #[IsGranted("ROLE_ADMIN")]
-   #[Route('/searchUser', name: 'search_user_name')]
-   public function searchUser(OrderRepository $orderRepository, Request $request)
-   {
-      $key = $request->get('keyword');
-      $orders = $orderRepository->searchUserByName($key);
-      return $this->render(
-         'order/index.html.twig',
-         [
-            'orders' => $orders
-         ]
-      );
-   }
 
 
 

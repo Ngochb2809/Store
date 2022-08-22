@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
-
-{# override phần header và footer ở trang base để ẩn nội dung không mong muốn #}
 {% block header %} {% endblock %}
-
 {% block body %}
 <div class="container card col-md-5 mt-3 text-center bg-light">
 <form method="post">
@@ -30,8 +27,6 @@
             <input type="checkbox" name="_remember_me"> Remember me
         </label>
     </div>
-
-
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
